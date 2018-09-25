@@ -1,0 +1,19 @@
+{
+  "name": "rsa-provider",
+  "version": "0.0.1",
+  "description": "rsa-provider",
+  "main": "js/index.js",
+  "types": "typings/index.d.ts",
+  "author": {
+    "name": "jpb"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.2.17",
+    "@types/node": "^8.0.14",
+    "gulp": "^3.9.1",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "mongoose": "^5.2.17"
+  }
+}
