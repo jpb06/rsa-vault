@@ -1,7 +1,7 @@
 {
-  "name": "rsa-provider",
+  "name": "rsa-store",
   "version": "0.0.1",
-  "description": "rsa-provider",
+  "description": "A library meant to store and provide rsa keys.",
   "main": "js/index.js",
   "types": "typings/index.d.ts",
   "author": {
@@ -10,11 +10,15 @@
   "devDependencies": {
     "@types/mongoose": "^5.2.17",
     "@types/node": "^8.0.14",
+    "@types/node-rsa": "^0.4.3",
     "gulp": "^3.9.1",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
+    "moment": "^2.22.2",
     "mongoose": "^5.2.17",
+    "node-rsa": "^1.0.1",
+    "reflect-metadata": "^0.1.12",
     "typegoose": "^5.4.0"
   }
 }
