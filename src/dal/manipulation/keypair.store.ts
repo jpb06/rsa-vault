@@ -8,7 +8,7 @@ export abstract class KeyPairStore {
     public static async Save(
         data: KeyPair
     ): Promise<boolean> {
-        await mongoose.connect(DalConfiguration.GetURI());
+        await mongoose.connect(DalConfiguration.GetURI(), { useNewUrlParser: true });
         let db = mongoose.connection;
 
         try {
@@ -32,7 +32,7 @@ export abstract class KeyPairStore {
     public static async GetAll(
         application: string
     ): Promise<Array<KeyPair>>  {
-        await mongoose.connect(DalConfiguration.GetURI());
+        await mongoose.connect(DalConfiguration.GetURI(), { useNewUrlParser: true });
         let db = mongoose.connection;
 
         try {
@@ -54,7 +54,7 @@ export abstract class KeyPairStore {
     public static async RemoveOldest(
         application: string
     ): Promise<boolean> {
-        await mongoose.connect(DalConfiguration.GetURI());
+        await mongoose.connect(DalConfiguration.GetURI(), { useNewUrlParser: true });
         let db = mongoose.connection;
 
         try {
