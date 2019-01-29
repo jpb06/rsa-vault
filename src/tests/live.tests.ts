@@ -5,7 +5,7 @@ import { KeyPair } from './../dal/types/exported.types';
 import { DalConfiguration } from './../dal/configuration/dal.configuration';
 
 export async function liveTest() {
-    DalConfiguration.Setup('127.0.0.1:27017', 'test');
+    DalConfiguration.Setup('localhost:27017', 'test', 'testusr', 'testo', 'admin');
     (async () => {
         try {
             await KeyPairStore.Save(new KeyPair(
