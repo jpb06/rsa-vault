@@ -1,6 +1,6 @@
 {
   "name": "rsa-provider",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A library meant to generate, store and provide rsa keypairs.",
   "main": "js/index.js",
   "types": "typings/index.d.ts",

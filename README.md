@@ -21,6 +21,7 @@ I made this to act as an unified cryptographic provider for projects running on 
 *  0.0.2 : Moving to gulp 4.0.0.
 *  0.0.3 : Using new mongodb url parser.
 *  0.0.4 : It's really time to put up some proper testing scheme.. (removing live tests from the index file).
+*  0.0.5 : Adding mongodb basic authentication support.
 
 ## todo
 
