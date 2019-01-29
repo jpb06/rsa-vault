@@ -2,12 +2,22 @@
     private static url: string;
     private static database: string;
 
+    private static username: string;
+    private static password: string;
+    private static authDb: string;
+
     public static Setup(
         url: string,
-        database: string
+        database: string,
+        username: string,
+        password: string,
+        authDb: string
     ): void {
         this.url = url;
         this.database = database;
+        this.username = username;
+        this.password = password;
+        this.authDb = authDb;
     }
 
     public static Verify(): void {
@@ -20,13 +30,9 @@
         }
     }
 
-    public static SwitchDatabase(database: string): void {
-        this.database = database;
-    }
-
     public static GetURI(): string {
         this.Verify();
 
-        return 'mongodb://'+this.url + '/' + this.database;
+        return `mongodb://${this.username}:${this.password}@${this.url}/${this.database}?authSource=${this.authDb}`;
     }
 }
