@@ -1,23 +1,27 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "./dist/js",
-    "declarationDir": "./dist/typings",
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "noEmitOnError": true,
-    "removeComments": true,
     "declaration": true,
+    "declarationDir": "./dist/typings",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "outDir": "./dist/js",
+    "removeComments": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "target": "es6"
   },
   "compileOnSave": false,
   "buildOnSave": false,
+  "typeRoots": [
+    "node_modules/@types"
+  ],
   "exclude": [
     "node_modules",
+    "dist",
     "./src/tests"
   ]
 }
