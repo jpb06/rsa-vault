@@ -1,12 +1,14 @@
 ﻿import * as mongoose from 'mongoose';
 
 import { KeyPairModel } from './../types/persisted.types';
-import { KeyPair } from './../types/exported.types';
+import { ApplicationKeys } from './../types/exported.types';
 import { DalConfiguration } from './../configuration/dal.configuration';
+import { ObjectId } from 'bson';
 
 export abstract class KeyPairStore {
+
     public static async Save(
-        data: KeyPair
+        data: ApplicationKeys
     ): Promise<boolean> {
         await mongoose.connect(DalConfiguration.GetURI(), {
             useNewUrlParser: true
@@ -33,7 +35,7 @@ export abstract class KeyPairStore {
 
     public static async GetAll(
         application: string
-    ): Promise<Array<KeyPair>>  {
+    ): Promise<Array<ApplicationKeys>>  {
         await mongoose.connect(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
@@ -67,12 +69,40 @@ export abstract class KeyPairStore {
             const Model = new KeyPairModel().getModelForClass(KeyPairModel);
 
             let data = await Model
-                .findOne()
+                .findOne({ application: application })
                 .sort('-dateGenerated')
                 .remove()
                 .exec();
     
             return true;
+        } finally {
+            db.close();
+        }
+    }
+
+    public static async RemoveAllButRecent(
+        application: string,
+        recentEntriesToKeepCount: number
+    ): Promise<boolean> {
+        await mongoose.connect(DalConfiguration.GetURI(), {
+            useNewUrlParser: true
+        });
+        let db = mongoose.connection;
+
+        try {
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
+
+            let entriesToKeep = await Model
+                .find({ application: application })
+                .sort('-dateGenerated')
+                .skip(recentEntriesToKeepCount)
+                .select('_id')
+                .lean()
+                .exec() as Array<ObjectId>;
+
+            let result = await Model.deleteMany({ application: application, _id: { $in: entriesToKeep } });
+
+            return result.ok === 1;
         } finally {
             db.close();
         }

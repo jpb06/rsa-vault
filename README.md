@@ -1,4 +1,4 @@
-﻿# rsa-provider
+﻿# rsa-vault
 
 A little library meant to generate, store and provide rsa keys.
 
@@ -22,6 +22,7 @@ I made this to act as an unified cryptographic provider for projects running on 
 *  0.0.3 : Using new mongodb url parser.
 *  0.0.4 : It's really time to put up some proper testing scheme.. (removing live tests from the index file).
 *  0.0.5 : Adding mongodb basic authentication support.
+*  0.0.6 : Adding caching to limit db calls. End object now returns the previously generated public key, to let the consumer verify messages signed with the previous key.
 
 ## todo
 

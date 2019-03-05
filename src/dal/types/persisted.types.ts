@@ -1,5 +1,5 @@
 ﻿import { prop, Typegoose, instanceMethod } from 'typegoose';
-import { KeyPair } from './exported.types';
+import { ApplicationKeys } from './exported.types';
 
 /* ---------------------------------------------------------------------------------------------------------------
    KeyPair
@@ -15,12 +15,13 @@ export class KeyPairModel extends Typegoose {
     dateGenerated: string;
 
     @instanceMethod
-    public asExportedType(): KeyPair {
-        return new KeyPair(
+    public asExportedType(): ApplicationKeys {
+        return new ApplicationKeys(
             this.application,
             this.privateKey,
             this.publicKey,
-            this.dateGenerated
+            this.dateGenerated,
+            ''
         );
     }
 }
