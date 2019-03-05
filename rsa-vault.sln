@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "rsa-store", "rsa-store.njsproj", "{A9A74C76-C2F9-47E7-8776-764B064F30AC}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "rsa-vault", "rsa-vault.njsproj", "{A9A74C76-C2F9-47E7-8776-764B064F30AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>a9a74c76-c2f9-47e7-8776-764b064f30ac</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>dist\js\index.js</StartupFile>
+    <StartupFile>dist\js\vault.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -33,7 +33,16 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\crypto\crypto.service.ts">
+    <TypeScriptCompile Include="src\business\cache.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\business\crypto.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\business\vault.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\vault.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\dal\configuration\dal.configuration.ts">
@@ -48,13 +57,12 @@
     <TypeScriptCompile Include="src\dal\types\persisted.types.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\index.ts" />
     <Content Include=".gitignore" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
-    <TypeScriptCompile Include="src\tests\live.tests.ts">
+    <TypeScriptCompile Include="src\manualtests\live.tests.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\types.export.ts">
@@ -62,16 +70,31 @@
     </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="project-apparatus\" />
+    <Folder Include="project-apparatus\util\" />
+    <Folder Include="project-apparatus\tasks\" />
     <Folder Include="src\" />
     <Folder Include="src\dal\" />
-    <Folder Include="src\crypto\" />
     <Folder Include="src\dal\manipulation\" />
     <Folder Include="src\dal\configuration\" />
     <Folder Include="src\dal\types\" />
-    <Folder Include="src\tests\" />
+    <Folder Include="src\business\" />
+    <Folder Include="src\manualtests\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gulpfile.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="project-apparatus\tasks\clean.dist.task.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="project-apparatus\tasks\generate.package.task.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="project-apparatus\tasks\move.readme.task.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="project-apparatus\util\console.util.js">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
