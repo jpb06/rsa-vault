@@ -6,7 +6,14 @@ import { DalConfiguration } from '../dal/configuration/dal.configuration';
 import { VaultService } from '../vault';
 
 export async function liveTest() {
-    DalConfiguration.Setup('localhost:27017', 'test', 'testusr', 'testo', 'admin');
+    DalConfiguration.Setup({
+        srvIPAddress: 'localhost:27017',
+        mongodbPort: 27017,
+        rsaVaultDb: 'test',
+        rsaVaultDbUsername: 'testusr',
+        rsaVaultDbPassword: 'testo',
+        mongoAuthDb: 'admin'
+    });
     (async () => {
         try {
             
