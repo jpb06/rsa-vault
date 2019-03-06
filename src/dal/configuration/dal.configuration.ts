@@ -1,4 +1,13 @@
-﻿export abstract class DalConfiguration {
+﻿export interface Config {
+    "srvIPAddress": string,
+    "mongodbPort": number,
+    "rsaVaultDb": string,
+    "rsaVaultDbUsername": string,
+    "rsaVaultDbPassword": string,
+    "mongoAuthDb": string
+}
+
+export abstract class DalConfiguration {
     private static url: string;
     private static database: string;
 
@@ -7,17 +16,13 @@
     private static authDb: string;
 
     public static Setup(
-        url: string,
-        database: string,
-        username: string,
-        password: string,
-        authDb: string
+        config: Config
     ): void {
-        this.url = url;
-        this.database = database;
-        this.username = username;
-        this.password = password;
-        this.authDb = authDb;
+        this.url = config.srvIPAddress;
+        this.database = config.rsaVaultDb;
+        this.username = config.rsaVaultDbUsername;
+        this.password = config.rsaVaultDbPassword;
+        this.authDb = config.mongoAuthDb;
     }
 
     public static Verify(): void {
