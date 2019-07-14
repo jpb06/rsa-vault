@@ -10,13 +10,14 @@ export abstract class KeyPairStore {
     public static async Save(
         data: ApplicationKeys
     ): Promise<boolean> {
-        await mongoose.connect(DalConfiguration.GetURI(), {
+        let db = await mongoose.createConnection(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
-        let db = mongoose.connection;
 
         try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel, {
+                existingConnection: db
+            });
 
             let keyPair = new Model({
                 application: data.application,
@@ -36,13 +37,14 @@ export abstract class KeyPairStore {
     public static async GetAll(
         application: string
     ): Promise<Array<ApplicationKeys>>  {
-        await mongoose.connect(DalConfiguration.GetURI(), {
+        let db = await mongoose.createConnection(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
-        let db = mongoose.connection;
 
         try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel, {
+                existingConnection: db
+            });
 
             let data = await Model
                 .find({ 'application': application })
@@ -60,13 +62,14 @@ export abstract class KeyPairStore {
     public static async RemoveOldest(
         application: string
     ): Promise<boolean> {
-        await mongoose.connect(DalConfiguration.GetURI(), {
+        let db = await mongoose.createConnection(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
-        let db = mongoose.connection;
 
         try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel, {
+                existingConnection: db
+            });
 
             let data = await Model
                 .findOne({ application: application })
@@ -84,13 +87,14 @@ export abstract class KeyPairStore {
         application: string,
         recentEntriesToKeepCount: number
     ): Promise<boolean> {
-        await mongoose.connect(DalConfiguration.GetURI(), {
+        let db = await mongoose.createConnection(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
-        let db = mongoose.connection;
 
         try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel, {
+                existingConnection: db
+            });
 
             let entriesToKeep = await Model
                 .find({ application: application })
