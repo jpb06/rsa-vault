@@ -25,6 +25,7 @@ I made this to act as an unified cryptographic provider for projects running on 
 *  0.0.6 : Adding caching to limit db calls. End object now returns the previously generated public key, to let the consumer verify messages signed with the previous key.
 *  0.0.7 : Simplifying DB setup, expecting an interface as input.
 *  0.0.8 : Fixing the issue with multiple connections.
+*  0.0.9 : Properly closing the connection once we're done this time..s.
 
 ## todo
 

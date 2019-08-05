@@ -10,14 +10,13 @@ export abstract class KeyPairStore {
     public static async Save(
         data: ApplicationKeys
     ): Promise<boolean> {
-        let db = await mongoose.createConnection(DalConfiguration.GetURI(), {
+
+        await mongoose.connect(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
 
         try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel, {
-                existingConnection: db
-            });
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
 
             let keyPair = new Model({
                 application: data.application,
@@ -29,22 +28,23 @@ export abstract class KeyPairStore {
             await keyPair.save();
 
             return true;
+        } catch (err) {
+            return false;
         } finally {
-            db.close();
+            await mongoose.disconnect();
         }
     }
 
     public static async GetAll(
         application: string
-    ): Promise<Array<ApplicationKeys>>  {
-        let db = await mongoose.createConnection(DalConfiguration.GetURI(), {
+    ): Promise<Array<ApplicationKeys>> {
+
+        await mongoose.connect(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
 
         try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel, {
-                existingConnection: db
-            });
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
 
             let data = await Model
                 .find({ 'application': application })
@@ -54,32 +54,35 @@ export abstract class KeyPairStore {
 
             return data.map(el => el.asExportedType());
 
+        } catch (err) {
+            return [];
         } finally {
-            db.close();
+            await mongoose.disconnect();
         }
     }
 
     public static async RemoveOldest(
         application: string
     ): Promise<boolean> {
-        let db = await mongoose.createConnection(DalConfiguration.GetURI(), {
+
+        await mongoose.connect(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
 
         try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel, {
-                existingConnection: db
-            });
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
 
-            let data = await Model
+            await Model
                 .findOne({ application: application })
                 .sort('-dateGenerated')
                 .remove()
                 .exec();
-    
+
             return true;
+        } catch (err) {
+            return false;
         } finally {
-            db.close();
+            await mongoose.disconnect();
         }
     }
 
@@ -87,14 +90,13 @@ export abstract class KeyPairStore {
         application: string,
         recentEntriesToKeepCount: number
     ): Promise<boolean> {
-        let db = await mongoose.createConnection(DalConfiguration.GetURI(), {
+
+        await mongoose.connect(DalConfiguration.GetURI(), {
             useNewUrlParser: true
         });
 
         try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel, {
-                existingConnection: db
-            });
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
 
             let entriesToKeep = await Model
                 .find({ application: application })
@@ -107,8 +109,10 @@ export abstract class KeyPairStore {
             let result = await Model.deleteMany({ application: application, _id: { $in: entriesToKeep } });
 
             return result.ok === 1;
+        } catch (err) {
+            return false;
         } finally {
-            db.close();
+            await mongoose.disconnect();
         }
     }
 }

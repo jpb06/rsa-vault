@@ -3,17 +3,19 @@
 import { KeyPairStore } from '../dal/manipulation/keypair.store';
 import { ApplicationKeys } from '../dal/types/exported.types';
 import { DalConfiguration } from '../dal/configuration/dal.configuration';
-import { VaultService } from '../vault';
+import { VaultService } from '../business/vault.service';
 
 export async function liveTest() {
-    DalConfiguration.Setup({
+    DalConfiguration.Setup(
+        {
         srvIPAddress: 'localhost:27017',
         mongodbPort: 27017,
         rsaVaultDb: 'test',
         rsaVaultDbUsername: 'testusr',
         rsaVaultDbPassword: 'testo',
         mongoAuthDb: 'admin'
-    });
+        }
+    );
     (async () => {
         try {
             
@@ -43,7 +45,8 @@ export async function liveTest() {
 
           //  let b = await KeyPairStore.RemoveAllButRecent('test', 2);
 
-            let key = await VaultService.GetKeyPair('test');
+            let key = await VaultService.GetKeyPair('dowpro-ladder');
+            let key2 = await VaultService.GetKeyPair('dowpro-ladder');
 
             let stop = 0;
         } catch (err) {

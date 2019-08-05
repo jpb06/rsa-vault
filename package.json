@@ -1,6 +1,6 @@
 {
   "name": "rsa-vault",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A library meant to generate, store and provide rsa keypairs.",
   "main": "js/vault.js",
   "types": "typings/vault.d.ts",
@@ -8,17 +8,17 @@
     "name": "jpb"
   },
   "devDependencies": {
-    "@types/mongoose": "^5.5.8",
-    "@types/node": "^8.10.50",
+    "@types/mongoose": "^5.5.11",
+    "@types/node": "^8.10.51",
     "@types/node-rsa": "^0.4.3",
     "fs-extra": "^7.0.1",
     "gulp": "^4.0.2"
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "mongoose": "^5.6.4",
+    "mongoose": "^5.6.8",
     "node-rsa": "^1.0.5",
     "reflect-metadata": "^0.1.13",
-    "typegoose": "^5.8.0"
+    "typegoose": "^5.9.0"
   }
 }
