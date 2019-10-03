@@ -18,19 +18,19 @@ export abstract class DalConfiguration {
     public static Setup(
         config: Config
     ): void {
-        this.url = config.srvIPAddress;
-        this.database = config.rsaVaultDb;
-        this.username = config.rsaVaultDbUsername;
-        this.password = config.rsaVaultDbPassword;
-        this.authDb = config.mongoAuthDb;
+        DalConfiguration.url = config.srvIPAddress;
+        DalConfiguration.database = config.rsaVaultDb;
+        DalConfiguration.username = config.rsaVaultDbUsername;
+        DalConfiguration.password = config.rsaVaultDbPassword;
+        DalConfiguration.authDb = config.mongoAuthDb;
     }
 
     public static Verify(): void {
-        if (this.url === undefined || this.url.length === 0) {
+        if (!this.url || this.url.length === 0) {
             throw new Error('No url specified to access mongodb instance');
         }
 
-        if (this.database === undefined || this.url.length === 0) {
+        if (!this.database || this.database.length === 0) {
             throw new Error('No database specified');
         }
     }

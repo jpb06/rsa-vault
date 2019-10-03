@@ -1,4 +1,4 @@
-﻿import { prop, Typegoose, instanceMethod } from 'typegoose';
+﻿import { prop, Typegoose, instanceMethod } from '@hasezoey/typegoose';
 import { ApplicationKeys } from './exported.types';
 
 /* ---------------------------------------------------------------------------------------------------------------

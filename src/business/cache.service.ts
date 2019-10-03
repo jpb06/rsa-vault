@@ -1,6 +1,4 @@
-﻿import * as moment from 'moment';
-
-import { ApplicationKeys } from '../dal/types/exported.types';
+﻿import { ApplicationKeys } from '../dal/types/exported.types';
 import { KeyPairStore } from '../dal/manipulation/keypair.store';
 
 interface Dictionary<T> {
@@ -9,14 +7,16 @@ interface Dictionary<T> {
 
 export abstract class CacheService {
 
-    private static data: Dictionary<Array<ApplicationKeys>> = { };
+    private static data: Dictionary<Array<ApplicationKeys>> = {};
+
+    public static Clear = async () => CacheService.data = {};
 
     public static async GetKeyPairs(
         application: string
     ): Promise<Array<ApplicationKeys>> {
 
         let keys = this.data[application];
-        if (keys === undefined) {
+        if (!keys) {
             keys = await KeyPairStore.GetAll(application);
 
             this.data[application] = keys;

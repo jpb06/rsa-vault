@@ -12,7 +12,8 @@ export abstract class KeyPairStore {
     ): Promise<boolean> {
 
         await mongoose.connect(DalConfiguration.GetURI(), {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useUnifiedTopology: true
         });
 
         try {
@@ -26,7 +27,7 @@ export abstract class KeyPairStore {
             });
 
             await keyPair.save();
-
+            
             return true;
         } catch (err) {
             return false;
@@ -40,7 +41,8 @@ export abstract class KeyPairStore {
     ): Promise<Array<ApplicationKeys>> {
 
         await mongoose.connect(DalConfiguration.GetURI(), {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useUnifiedTopology: true
         });
 
         try {
@@ -61,38 +63,14 @@ export abstract class KeyPairStore {
         }
     }
 
-    public static async RemoveOldest(
-        application: string
-    ): Promise<boolean> {
-
-        await mongoose.connect(DalConfiguration.GetURI(), {
-            useNewUrlParser: true
-        });
-
-        try {
-            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
-
-            await Model
-                .findOne({ application: application })
-                .sort('-dateGenerated')
-                .remove()
-                .exec();
-
-            return true;
-        } catch (err) {
-            return false;
-        } finally {
-            await mongoose.disconnect();
-        }
-    }
-
     public static async RemoveAllButRecent(
         application: string,
         recentEntriesToKeepCount: number
     ): Promise<boolean> {
 
         await mongoose.connect(DalConfiguration.GetURI(), {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useUnifiedTopology: true
         });
 
         try {
@@ -107,6 +85,27 @@ export abstract class KeyPairStore {
                 .exec() as Array<ObjectId>;
 
             let result = await Model.deleteMany({ application: application, _id: { $in: entriesToKeep } });
+
+            return result.ok === 1;
+        } catch (err) {
+            return false;
+        } finally {
+            await mongoose.disconnect();
+        }
+    }
+
+    public static async RemoveAll(
+        application: string
+    ): Promise<boolean> {
+        await mongoose.connect(DalConfiguration.GetURI(), {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+
+        try {
+            const Model = new KeyPairModel().getModelForClass(KeyPairModel);
+
+            const result = await Model.deleteMany({ application: application });
 
             return result.ok === 1;
         } catch (err) {
