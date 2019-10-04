@@ -10,7 +10,7 @@ cleanDist = async function () {
     let distPackage = {
         name: package.name,
         version: package.version,
-        description: package.version,
+        description: package.description,
         main: package.main,
         types: package.types,
         author: package.author,
