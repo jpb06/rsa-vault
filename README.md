@@ -5,8 +5,8 @@ A little library meant to generate, store and provide rsa keys.
 ## Purpose
 
 The app is built to serve as a repository for rsa keypairs.
-The respository can hold an arbitrary amount of keypairs, each defined by a identifier defining the application the keypair is defined for. The keypairs have a lifetime of 15 days.
-I made this to act as an unified cryptographic provider for projects running on the same local server. Main intent is to use JSON Web Token (JWT) without having to rely on an external providers. 
+The respository can hold an arbitrary amount of keypairs, each defined by an identifier defining the application the keypair is defined for. The keypairs have a lifetime of 15 days.
+I made this to act as an unified cryptographic provider for projects running on the same local server. Main intent is to use JSON Web Token (JWT) without having to rely on external providers. 
 
 ## Environment / Dependencies
 
@@ -14,6 +14,15 @@ I made this to act as an unified cryptographic provider for projects running on 
 - Persitence relying on mongodb.
 - DAL built on top mongoose & Typegoose.
 - node-rsa for crypto.
+- jest for tests.
+
+## Tests
+
+Using jest
+npm t
+npx jest
+npx jest --watch
+
 
 ## Version history
 
@@ -26,7 +35,5 @@ I made this to act as an unified cryptographic provider for projects running on 
 *  0.0.7 : Simplifying DB setup, expecting an interface as input.
 *  0.0.8 : Fixing the issue with multiple connections.
 *  0.0.9 : Properly closing the connection once we're done this time..s.
-
-## todo
-
-Proper tests...
+*  0.1.0 : Adding sasslprep and adding some tests using jest.
+*  0.1.1 : Fixing package description.
