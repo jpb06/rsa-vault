@@ -5,6 +5,8 @@
     <Name>rsa-store</Name>
     <RootNamespace>rsa-store</RootNamespace>
     <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+    <JavaScriptTestFramework>Jest</JavaScriptTestFramework>
+    <JavaScriptTestRoot>src\tests\units\</JavaScriptTestRoot>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -22,7 +24,7 @@
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
-    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.6</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
     <StartWebBrowser>False</StartWebBrowser>
   </PropertyGroup>
@@ -42,6 +44,16 @@
     <TypeScriptCompile Include="src\business\vault.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\tests\units\business\cache.service.test.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\tests\units\business\crypto.service.test.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\tests\units\business\vault.service.test.ts" />
+    <TypeScriptCompile Include="src\tests\units\dal\dal.configuration.test.ts" />
+    <TypeScriptCompile Include="src\tests\units\dal\keypair.store.test.ts" />
+    <TypeScriptCompile Include="src\tests\util\tests.helpers.ts" />
     <TypeScriptCompile Include="src\vault.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -58,18 +70,20 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <Content Include=".gitignore" />
+    <Content Include="jest.config.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <Content Include="project-apparatus\tasks\tsc.build.task.js" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
-    <TypeScriptCompile Include="src\manualtests\live.tests.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="src\types.export.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\tests\" />
     <Folder Include="project-apparatus\" />
     <Folder Include="project-apparatus\util\" />
     <Folder Include="project-apparatus\tasks\" />
@@ -79,7 +93,10 @@
     <Folder Include="src\dal\configuration\" />
     <Folder Include="src\dal\types\" />
     <Folder Include="src\business\" />
-    <Folder Include="src\manualtests\" />
+    <Folder Include="src\tests\units\" />
+    <Folder Include="src\tests\units\dal\" />
+    <Folder Include="src\tests\units\business\" />
+    <Folder Include="src\tests\util\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gulpfile.js">
