@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const generatePackage = require('./project-apparatus/tasks/generate.package.task.js');
 const cleanDist = require('./project-apparatus/tasks/clean.dist.task.js');
 const moveReadme = require('./project-apparatus/tasks/move.readme.task.js');
+const tscBuild = require('./project-apparatus/tasks/tsc.build.task.js');
 
 gulp.task('generate-package', async () => {
     await generatePackage();
@@ -15,4 +16,8 @@ gulp.task('move-readme', async () => {
 
 gulp.task('clean', async () => {
     await cleanDist();
+});
+
+gulp.task('build-dev', async() => {
+    await tscBuild(false, true);
 });
