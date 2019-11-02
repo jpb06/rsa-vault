@@ -1,6 +1,6 @@
 {
   "name": "rsa-vault",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A library meant to generate, store and provide rsa keypairs.",
   "main": "js/vault.js",
   "types": "typings/vault.d.ts",

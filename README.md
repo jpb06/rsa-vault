@@ -37,3 +37,4 @@ npx jest --watch
 *  0.0.9 : Properly closing the connection once we're done this time..s.
 *  0.1.0 : Adding sasslprep and adding some tests using jest.
 *  0.1.1 : Fixing package description.
+*  0.1.2 : Updating dependencies (mainly mongoose).
