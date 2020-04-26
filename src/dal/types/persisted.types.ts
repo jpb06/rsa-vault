@@ -1,27 +1,26 @@
-﻿import { prop, Typegoose, instanceMethod } from '@hasezoey/typegoose';
-import { ApplicationKeys } from './exported.types';
+﻿import { prop } from "@typegoose/typegoose";
+import { ApplicationKeys } from "./exported.types";
 
 /* ---------------------------------------------------------------------------------------------------------------
    KeyPair
    ---------------------------------------------------------------------------------------------------------------*/
-export class KeyPairModel extends Typegoose {
-    @prop()
-    application: string;
-    @prop()
-    privateKey: string;
-    @prop()
-    publicKey: string;
-    @prop()
-    dateGenerated: string;
+export class KeyPairModel {
+  @prop()
+  application: string;
+  @prop()
+  privateKey: string;
+  @prop()
+  publicKey: string;
+  @prop()
+  dateGenerated: string;
 
-    @instanceMethod
-    public asExportedType(): ApplicationKeys {
-        return new ApplicationKeys(
-            this.application,
-            this.privateKey,
-            this.publicKey,
-            this.dateGenerated,
-            ''
-        );
-    }
+  public asExportedType(): ApplicationKeys {
+    return new ApplicationKeys(
+      this.application,
+      this.privateKey,
+      this.publicKey,
+      this.dateGenerated,
+      ""
+    );
+  }
 }
