@@ -13,7 +13,7 @@
   "devDependencies": {
     "@types/jest": "^24.9.1",
     "@types/mongoose": "^5.7.36",
-    "@types/node": "^8.10.63",
+    "@types/node": "^8.10.64",
     "@types/node-rsa": "^0.4.3",
     "fs-extra": "^7.0.1",
     "gulp": "^4.0.2",
@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@typegoose/typegoose": "^6.5.0",
-    "moment": "^2.27.0",
-    "mongoose": "^5.10.3",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.9",
     "node-rsa": "^1.1.1",
     "reflect-metadata": "^0.1.13",
     "saslprep": "^1.0.3"
